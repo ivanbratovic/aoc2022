@@ -2,9 +2,9 @@ test = False
 
 def read_input():
     global test
-    filename = "input.txt"
+    filename = "inputs/day01-input.txt"
     if test:
-        filename = "test.txt"
+        filename = "inputs/day01-test.txt"
     with open(filename, "r") as file:
         return file.readlines()
 
