@@ -45,12 +45,11 @@ def main():
             exact_dir += "/"
 
     
-    print(sum([size if size <= 100000 else 0 for size in dir_sizes.values()]))
+    print(sum([size for size in dir_sizes.values() if size <= 100000]))
 
-    max_size = 70000000
-    need_to_delete = dir_sizes["root"] - (max_size - 30000000)
+    need_to_delete = dir_sizes["root"] - 40000000
 
-    print(min([size if size >= need_to_delete else max_size for size in dir_sizes.values()]))
+    print(min([size for size in dir_sizes.values() if size >= need_to_delete]))
 
 
 if __name__ == "__main__":
