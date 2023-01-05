@@ -34,9 +34,9 @@ def run(program):
         # During the cycle
         current_pixel = (cycle - 1) % 40
         if abs(current_pixel - regX) < 2:
-            print("#", end="")
+            print("█", end="")
         else:
-            print(".", end="")
+            print(" ", end="")
         if current_pixel == 39:
             print()
         if cycle in (20, 60, 100, 140, 180, 220):
