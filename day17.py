@@ -1,8 +1,4 @@
-import itertools
-
 test_input = False
-
-
 
 def read_input():
     filename = "inputs/day17-input.txt"
@@ -40,6 +36,22 @@ def drop_piece(piece, coords, points, direction):
         return True, coords
     return False, (x, y - 1)
 
+def print_map(points, tallest_point):
+
+    def shortprint(*args, **kwargs):
+        print(*args, **kwargs, end="")
+    
+    for y in range(tallest_point + 4, 0, -1):
+        shortprint(f"\n{y:-4} |")
+        for x in range(7):
+            point = (x, y)
+            if point in points:
+                shortprint("#")
+            else:
+                shortprint(".")
+        shortprint("|")
+    print("\n   0 +-------+")
+
 def drop_pieces(n=2022):
     directions = read_input()
     pieces = [
@@ -53,7 +65,6 @@ def drop_pieces(n=2022):
     states = {}
     jet_step = 0
     for i in range(n):
-        print(i, end="\r")
         piece = pieces[i % 5]
         coords = (2, max(points, key=lambda x: x[1])[1] + 4)
         start = coords
@@ -73,25 +84,10 @@ def drop_pieces(n=2022):
             states[state] = i, tallest_point
     print(tallest_point)
 
-
 def main():
     drop_pieces(n=2022)
-    
     drop_pieces(n=1000000000000)
-    #shortprint = lambda x: print(x, end="")
-    #for y in range(tallest_point + 4, 0, -1):
-    #    shortprint(f"\n{y:3} |")
-    #    for x in range(7):
-    #        point = (x, y)
-    #        if point in points:
-    #            shortprint("#")
-    #        else:
-    #            shortprint(".")
-    #    shortprint("|")
-    #print("\n  0 +-------+")
     
-
-
 
 if __name__ == "__main__":
     main()
