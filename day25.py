@@ -1,5 +1,6 @@
 test = False
 
+
 def read_input():
     global test
     filename = "inputs/day25-input.txt"
@@ -7,6 +8,7 @@ def read_input():
         filename = "inputs/day25-test.txt"
     with open(filename, "r") as file:
         return list(map(lambda x: x.strip(), file.readlines()))
+
 
 def snafu_digitval(char):
     try:
@@ -20,13 +22,15 @@ def snafu_digitval(char):
     assert val in range(0, 3)
     return val
 
+
 def snafu_digitchar(val):
-    assert val in range (0, 5)
+    assert val in range(0, 5)
     if val == 3:
         return "="
     if val == 4:
         return "-"
     return str(val)
+
 
 def snafu_divmod(num, carry):
     num, rem = divmod(num, 5)
@@ -38,8 +42,12 @@ def snafu_divmod(num, carry):
         carry += 1
     return num, rem, carry
 
+
 def snafu_to_dec(num):
-    return sum([snafu_digitval(digit) * (5 ** i) for i, digit in enumerate(reversed(num))])
+    return sum(
+        [snafu_digitval(digit) * (5**i) for i, digit in enumerate(reversed(num))]
+    )
+
 
 def dec_to_snafu(num):
     result = ""
@@ -56,6 +64,6 @@ def main():
     nums = read_input()
     print(dec_to_snafu(sum([snafu_to_dec(num) for num in nums])))
 
-  
+
 if __name__ == "__main__":
     main()

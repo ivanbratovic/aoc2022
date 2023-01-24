@@ -16,6 +16,7 @@ def read_input():
     with open(filename, "r") as file:
         return [(line[0], line[2]) for line in file.readlines()]
 
+
 def main():
     score = 0
     for p1, p2 in read_input():
@@ -28,15 +29,16 @@ def main():
     print(score)
     score = 0
     for p1, p2 in read_input():
-        if p2 == "Z": # Win
+        if p2 == "Z":  # Win
             score += win_score
             score += scores[loses[p1]]
-        if p2 == "Y": # Draw
+        if p2 == "Y":  # Draw
             score += draw_score
             score += scores[p1]
-        if p2 == "X": # Loss
+        if p2 == "X":  # Loss
             score += scores[beats[p1]]
     print(score)
-  
+
+
 if __name__ == "__main__":
     main()

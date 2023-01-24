@@ -1,11 +1,13 @@
 test_input = False
 
+
 def read_input():
     filename = "inputs/day17-input.txt"
     if test_input:
         filename = "inputs/day17-test.txt"
     with open(filename, "r") as file:
         return file.readline().strip()
+
 
 def invalid_pos(piece, coords, points):
     x, y = coords
@@ -19,8 +21,10 @@ def invalid_pos(piece, coords, points):
             return True
     return False
 
+
 def manhattan_dist(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
 
 def drop_piece(piece, coords, points, direction):
     x, y = coords
@@ -36,11 +40,11 @@ def drop_piece(piece, coords, points, direction):
         return True, coords
     return False, (x, y - 1)
 
-def print_map(points, tallest_point):
 
+def print_map(points, tallest_point):
     def shortprint(*args, **kwargs):
         print(*args, **kwargs, end="")
-    
+
     for y in range(tallest_point + 4, 0, -1):
         shortprint(f"\n{y:-4} |")
         for x in range(7):
@@ -52,6 +56,7 @@ def print_map(points, tallest_point):
         shortprint("|")
     print("\n   0 +-------+")
 
+
 def drop_pieces(n=2022):
     directions = read_input()
     pieces = [
@@ -59,7 +64,7 @@ def drop_pieces(n=2022):
         ((0, 1), (1, 0), (2, 1), (1, 1), (1, 2)),
         ((0, 0), (1, 0), (2, 0), (2, 1), (2, 2)),
         ((0, 0), (0, 1), (0, 2), (0, 3)),
-        ((0, 0), (1, 0), (0, 1), (1, 1))
+        ((0, 0), (1, 0), (0, 1), (1, 1)),
     ]
     points = {(i, 0) for i in range(7)}
     states = {}
@@ -84,10 +89,11 @@ def drop_pieces(n=2022):
             states[state] = i, tallest_point
     print(tallest_point)
 
+
 def main():
     drop_pieces(n=2022)
     drop_pieces(n=1000000000000)
-    
+
 
 if __name__ == "__main__":
     main()

@@ -2,6 +2,7 @@ import numpy as np
 
 test = False
 
+
 def read_input():
     global test
     filename = "inputs/day10-input.txt"
@@ -9,6 +10,7 @@ def read_input():
         filename = "inputs/day10-test.txt"
     with open(filename, "r") as file:
         return list(map(lambda x: tuple(x.strip().split()), file.readlines()))
+
 
 def run(program):
     sums = 0
@@ -47,12 +49,10 @@ def run(program):
             adding = 0
     print("Part 1:", sums)
 
-        
 
 def main():
     program = read_input()
     run(program[::-1])
-
 
 
 if __name__ == "__main__":

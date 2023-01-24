@@ -2,12 +2,14 @@ import re
 
 test_input = False
 
+
 def read_input():
     filename = "inputs/day21-input.txt"
     if test_input:
         filename = "inputs/day21-test.txt"
     with open(filename, "r") as file:
         return {k: v for k, v in map(lambda l: l.strip().split(": "), file.readlines())}
+
 
 def figure_out_root(monkeys):
     literals = {}
@@ -27,11 +29,12 @@ def figure_out_root(monkeys):
                     continue
     return literals["root"]
 
+
 def figure_out_humn(monkeys, start=0, step_factor=0.02):
     # Solve for root=0
     monkeys["root"] = re.sub(r" . ", " - ", monkeys["root"])
     humn = 1
-    
+
     while True:
         monkeys["humn"] = str(humn)
         root = figure_out_root(monkeys)
@@ -41,6 +44,7 @@ def figure_out_humn(monkeys, start=0, step_factor=0.02):
         if step == 0:
             step = int(root * step_factor / abs(root * step_factor))
         humn += step
+
 
 def main():
     monkeys = read_input()

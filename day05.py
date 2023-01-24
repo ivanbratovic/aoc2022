@@ -5,6 +5,7 @@ import re
 
 test = False
 
+
 def read_input():
     global test
     filename = "inputs/day05-input.txt"
@@ -26,6 +27,7 @@ def read_input():
                 crates.append(tuple(re.findall(r"\[(.)\]", line)))
         return crates[-2::-1], moves
 
+
 def operate_cranemover(stacks, moves, version=9000):
     for times, fro, to in moves:
         fro, to = fro - 1, to - 1
@@ -35,6 +37,7 @@ def operate_cranemover(stacks, moves, version=9000):
         elif version == 9001:
             stacks[to] += reversed(new_stack)
     print("".join([stack[-1] for stack in stacks]))
+
 
 def main():
     layers, moves = read_input()

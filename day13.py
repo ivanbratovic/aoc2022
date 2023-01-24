@@ -1,5 +1,6 @@
 test_input = False
 
+
 def read_input():
     global test_input
     filename = "inputs/day13-input.txt"
@@ -7,6 +8,7 @@ def read_input():
         filename = "inputs/day13-test.txt"
     with open(filename, "r") as file:
         return [eval(line.strip()) for line in file.readlines() if line != "\n"]
+
 
 def compare(left, right):
     if type(left) != type(right):
@@ -26,12 +28,20 @@ def compare(left, right):
         return True
     if len(left) > len(right):
         return False
-    return None    
+    return None
+
 
 def main():
     signals = read_input()
-    print(sum([i // 2 + 1 for i in range(0, len(signals), 2) if compare(signals[i], signals[i+1])]))
-    
+    print(
+        sum(
+            [
+                i // 2 + 1
+                for i in range(0, len(signals), 2)
+                if compare(signals[i], signals[i + 1])
+            ]
+        )
+    )
 
     divider_1 = [[2]]
     divider_2 = [[6]]
@@ -41,10 +51,11 @@ def main():
     while mijenjao:
         mijenjao = False
         for i in range(len(signals) - 1):
-            if not compare(signals[i], signals[i+1]):
-                signals[i], signals[i+1] = signals[i+1], signals[i]
+            if not compare(signals[i], signals[i + 1]):
+                signals[i], signals[i + 1] = signals[i + 1], signals[i]
                 mijenjao = True
     print((signals.index(divider_1) + 1) * (signals.index(divider_2) + 1))
+
 
 if __name__ == "__main__":
     main()

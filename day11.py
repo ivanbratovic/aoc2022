@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 import numpy as np
 import math
+
 test_input = False
+
 
 @dataclass
 class Monkey:
@@ -10,6 +12,7 @@ class Monkey:
     test: int
     false_action: int
     true_action: int
+
 
 def read_input():
     global test_input
@@ -22,7 +25,9 @@ def read_input():
         for line in file.readlines():
             match line.strip().split():
                 case ["Starting", "items:", *items]:
-                    current_monkey["items"] = list(map(lambda x: int(x.replace(",", "")), items))
+                    current_monkey["items"] = list(
+                        map(lambda x: int(x.replace(",", "")), items)
+                    )
                 case ["Operation:", *operation]:
                     current_monkey["operation"] = " ".join(operation[2:])
                 case ["Test:", "divisible", "by", test]:
@@ -36,6 +41,7 @@ def read_input():
                     monkeys.append(Monkey(**current_monkey))
     monkeys.append(Monkey(**current_monkey))
     return monkeys
+
 
 def one_round(monkeys, counts, modulus=0):
     for i, monkey in enumerate(monkeys):
@@ -52,6 +58,7 @@ def one_round(monkeys, counts, modulus=0):
                 throw_to_monkey = monkey.true_action
             monkeys[throw_to_monkey].items.append(new)
 
+
 def monkey_business(round_count, use_modulus):
     monkeys = read_input()
     counts = np.zeros_like(monkeys, dtype=int)
@@ -61,6 +68,7 @@ def monkey_business(round_count, use_modulus):
         modulus = 0
     [one_round(monkeys, counts, modulus) for _ in range(round_count)]
     print(math.prod(sorted(counts)[-2:]))
+
 
 def main():
     monkey_business(20, False)
