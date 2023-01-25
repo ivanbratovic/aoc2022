@@ -58,8 +58,8 @@ def most_geodes(blueprint, start_robots, start_resouces, max_time=24, action="wa
 
     possible_earnings = resources["geode"] + max_time * robots["geode"]
 
-    # if max_time == 1:
-    #    return possible_earnings
+    if max_time == 1:
+        return possible_earnings
 
     max_earnings = possible_earnings + (max_time - 1) * max_time // 2 + 2
 
